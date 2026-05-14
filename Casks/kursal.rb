@@ -17,5 +17,11 @@ cask "kursal" do
 
   app "Kursal.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+      args: ["-dr", "com.apple.quarantine", "#{appdir}/Kursal.app"],
+      sudo: false
+  end
+  
   binary "#{appdir}/Kursal.app/Contents/MacOS/kursal-app", target: "kursal"
 end
